@@ -75,13 +75,18 @@ function createMap(earthquake) {
 
   legend.onAdd = function (map) {
     let div = L.DomUtil.create('div', 'info legend');
-    let depthRanges = [0, 10, 30, 50, 70, 90];
+    let depthRanges = [-10, 10, 30, 50, 70, 90];
     let labels = [];
   
-    for (let i = 0; i < depthRanges.length - 1; i++) {
+    for (let i = 0; i < depthRanges.length; i++) {
+      let j = i;
+      if (i === 6) {
+        j = i + 6;
+      };
+      console.log(`The length of depthRanges ${depthRanges.length}`);
       div.innerHTML +=
         '<div style="background-color:white;padding:5px;border-radius:5px;">' +
-        '<span style="background-color:' + depthColors[i+1] + ';width:10px;height:10px;display:inline-block;margin-right:5px;"></span>' + // Square of color
+        '<span style="background-color:' + depthColors[i] + ';width:10px;height:10px;display:inline-block;margin-right:5px;"></span>' + // Square of color
         depthRanges[i] + (depthRanges[i + 1] ? '&ndash;' + depthRanges[i + 1] + '<br>' : '+') + '</div>';
     }
   
